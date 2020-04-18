@@ -22,7 +22,7 @@ h1{
 .title-container{
     display: flex;
     justify-content: center;
-    margin-bottom: 5%;
+    margin-bottom: 2%;
 }
 
 .title-info{
@@ -68,6 +68,7 @@ h1{
 
 .proj-img{
     border-radius: 3px;
+    border: 2px solid rgb(68, 68, 155);
     height: 35vh;
     object-fit: cover;
     width: 25vw;
