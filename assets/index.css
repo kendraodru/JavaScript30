@@ -6,11 +6,7 @@ html{
     background-size: cover; */
 
     background-color: #0093E9;
-background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
-
-    /* background: rgb(158,241,238);
-background: linear-gradient(0deg, rgba(158,241,238,1) 6%, rgba(64,175,246,1) 100%); */
-    /* font-family: 'Satisfy', cursive; */
+    background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
     font-family: 'Kalam', cursive;
     letter-spacing: 0.64px;
 }
@@ -80,6 +76,13 @@ h1{
 
 .proj-info{
     color:black;
-    padding:3%;
+    padding:5%;
     font-size: 3vh;
+}
+
+
+.playing {
+  transform: scale(1.1);
+  border-color: #ffc600;
+  box-shadow: 0 0 1rem #ffc600;
 }
