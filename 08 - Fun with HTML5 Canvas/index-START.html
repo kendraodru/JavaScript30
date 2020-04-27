@@ -5,14 +5,105 @@
   <title>HTML5 Canvas</title>
 </head>
 <body>
-<canvas id="draw" width="800" height="800"></canvas>
+  <div class='btn'>
+    <button class='reset-btn'>Reset Canvas</button>
+  </div>
+  <div class='hold-canvas'>
+    <canvas id="draw" width="800" height="800"></canvas>
+  </div>
 <script>
+  const canvas = document.getElementById("draw");
+  const resetBtn = document.querySelector('.reset-btn')
+  const ctx = canvas.getContext('2d');
+  // canvas.width = window.innerWidth;
+  // canvas.height = window.innerHeight;
+
+  ctx.strokeStyle = '#BADA55';
+  ctx.lineJoin='round';
+  ctx.lineCap='round';
+  ctx.lineWidth = 100;
+  // ctx.globalCompositeOperation = 'multiply';
+  // ctx.globalCompositeOperation = 'lighter';
+  // ctx.globalCompositeOperation = 'copy';
+  //'source-over | copy | destination-in | destination-out | destination-over | lighter | source-atop | source-in | source-out | xor';
+   
+  
+  let isDrawing = false;
+  let lastX = 0;
+  let lastY = 0;
+
+  let hue = 0;
+  let direction = true;
+
+  function draw(e){
+    if (!isDrawing) return;
+
+    ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
+
+    ctx.beginPath();
+    ctx.moveTo(lastX, lastY);
+    ctx.lineTo(e.offsetX, e.offsetY);
+    ctx.stroke();
+    [lastX, lastY] = [e.offsetX, e.offsetY];
+
+    if (ctx.lineWidth >= 100 || ctx.lineWidth <= 1){
+      direction = !direction
+    }
+
+    if (direction){
+      ctx.lineWidth++
+    }else{
+      ctx.lineWidth--
+    }
+
+    if (hue >= 360){
+      hue = 0
+    }else{
+      hue++
+    }
+  }
+
+  function clearCanvas(){
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+
+  canvas.addEventListener('mousedown', (e) =>{
+    isDrawing = true;
+    [lastX, lastY] = [e.offsetX, e.offsetY];
+  });
+
+  canvas.addEventListener('mousemove', draw)
+  canvas.addEventListener('mouseout', () => isDrawing = false);
+  canvas.addEventListener('mouseup', () => isDrawing = false);
+  resetBtn.addEventListener('click', clearCanvas)
+  
+
 </script>
 
 <style>
   html, body {
     margin: 0;
   }
+  body{
+    background-image: url("https://images.unsplash.com/photo-1516655855035-d5215bcb5604?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80");
+  }
+
+  canvas{
+    background-color: white;
+    border: 3px solid blue;
+  }
+
+  .btn{
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .hold-canvas{
+    margin-top: 3%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  } 
 </style>
 
 </body>
