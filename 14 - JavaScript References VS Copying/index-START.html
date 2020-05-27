@@ -8,12 +8,42 @@
 
   <script>
     // start with strings, numbers and booleans
+    let age = 100;
+    let age2 = age;
+    console.log(age, age2) //100 100
+    age = 200
+
+    console.log(age, age2) //200,100
+
+    let name = 'wes'
+    let name2 = name;
+    console.log(name, name2) //wes wes
+
+    name = 'wesly'
+
+    console.log(name, name2) //wesly wes
+    //if you change the original one, it won't update the second
 
     // Let's say we have an array
     const players = ['Wes', 'Sarah', 'Ryan', 'Poppy'];
 
-    // and we want to make a copy of it.
+    // const team = players
+    // console.log(players, team)
 
+    // team[3] = 'lux'
+
+    // console.log(players, team)//['Wes', 'Sarah', 'Ryan', 'lux'] ['Wes', 'Sarah', 'Ryan', 'lux']
+    //if you change any of the arrays, it will always change the original array since its a reference
+
+    //avoid by using slice
+    //concat
+    //spread
+    const team = [...players]
+    team[3] = 'lux'
+    console.log(players, team)
+
+    // and we want to make a copy of it.
+  
     // You might think we can just do something like this:
 
     // however what happens when we update that array?
@@ -43,13 +73,26 @@
     };
 
     // and think we make a copy:
-
+    const captain = Object.assign({}, person, {number:99, age:12});
+    console.log(captain, person)
     // how do we take a copy instead?
 
     // We will hopefully soon see the object ...spread
-
+    // const cap3 = {...person} //not created yet
     // Things to note - this is only 1 level deep - both for Arrays and Objects. lodash has a cloneDeep method, but you should think twice before using it.
+    const wes = {
+      name:"wes",
+      age:100,
+      social:{
+        twitter:'@twit',
+        facebook:'@fb'
+      }
+    }
 
+    //object.assign will change the social of the original.
+
+    const dev2 = JSON.parse(JSON.stringify(wes)) //poor mans deep clone
+    //this is a deep copy^
   </script>
 
 </body>
