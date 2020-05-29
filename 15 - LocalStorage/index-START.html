@@ -39,11 +39,18 @@
       done: false
     }
     items.push(item)
+    populateList(items, itemsList)
     this.reset() //form element has a .reset()
   }
 
   function populateList(plates = [], platesList){
-    
+    platesList.innerHTML = plates.map((plate, i)=>{
+      return `
+        <li>
+          <label for=''>${plate.text} </label>
+        </li>
+      `
+    }).join('');
 
   }
 
